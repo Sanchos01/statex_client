@@ -49,6 +49,6 @@ defmodule StatexClient do
                 data: nil
   end
 
-  def example, do: %StatexClient.Info{ok: true}
+  def statex_callback, do: %StatexClient.Info{ok: true}
 
 end

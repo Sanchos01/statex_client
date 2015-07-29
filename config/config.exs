@@ -21,7 +21,7 @@ use Mix.Config
 		statex_server: "http://127.0.0.1", # here we send data
 		ttl: 1000, # interval for calling your callback
 		memo_ttl: 3600000, # ttl for memorize json encoding and decoding
-		callback: &StatexClient.example/0 # your callback
+		callback_module: StatexClient # module where is your callback
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
