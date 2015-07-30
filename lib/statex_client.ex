@@ -53,5 +53,6 @@ defmodule StatexClient do
   end
 
   def statex_callback, do: %StatexClient.Info{ok: true}
+  def send(mess = %StatexClient.Info{}), do: StatexClient.Worker.send_process(mess)
 
 end

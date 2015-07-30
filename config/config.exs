@@ -18,11 +18,11 @@ use Mix.Config
 	config :statex_client, 
 		app: "my_great_appication", 
 		host: "127.0.0.1",
-		statex_server: "http://127.0.0.1", # here we send data
-		ttl: 1000, # interval for calling your callback
+		statex_server: "http://127.0.0.1:8888", # here we send data
+		ttl: 3000, # interval for calling your callback
 		memo_ttl: 3600000, # ttl for memorize json encoding and decoding
 		callback_module: StatexClient, # module where is your callback
-		hackney_opts: [timeout: 10000]
+		hackney_opts: [timeout: 10000, hackney: [basic_auth: {"login","password"}]]
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment

@@ -11,10 +11,16 @@ defmodule StatexClient.Worker do
 		{:ok, nil, @ttl}
 	end
 	definfo :timeout do
-		case %{cmd: "set_state", args: @callback_module.statex_callback() |> HashUtils.set(:host, @host) |> HashUtils.set(:app, @app) |> Map.delete(:__struct__)} |> http_post() do
-			%{ok: true} -> :ok
-			error -> StatexClient.error("got error on requesting server #{inspect error}")
+		case @callback_module.statex_callback() |> send_process do
+			:ok -> :ok
+			{:error, error} -> StatexClient.error("got error on requesting server #{inspect error}")
 		end
 		{:noreply, nil, @ttl}
+	end
+	def send_process(mess = %StatexClient.Info{}) do
+		case %{cmd: "set_state", args: mess |> HashUtils.set(:host, @host) |> HashUtils.set(:app, @app) |> Map.delete(:__struct__)} |> http_post() do
+			%{ok: true} -> :ok
+			error -> {:error, error}
+		end
 	end
 end
