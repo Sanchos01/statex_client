@@ -1,10 +1,13 @@
 defmodule StatexClient.HTTP do
-  use Silverb,  [ {"@statex_server", (res = :application.get_env(:statex_client, :statex_server, nil); true = is_binary(res) ; res)} ]
+  use Silverb,  [ 
+                  {"@statex_server", (res = :application.get_env(:statex_client, :statex_server, nil); true = is_binary(res) ; res)},
+                  {"@hackney_opts", (res = :application.get_env(:statex_client, :hackney_opts, nil); true = is_list(res) ; res)} 
+                ]
   defmacro __using__(_) do
     quote location: :keep do
       use Httphex,  [
                       host: unquote(@statex_server), 
-                      opts: [timeout: 10000],
+                      opts: unquote(@hackney_opts),
                       encode: &StatexClient.encode/1,
                       decode: &StatexClient.decode/1,
                       gzip: false,
