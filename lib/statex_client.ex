@@ -11,7 +11,8 @@ defmodule StatexClient.HTTP do
                       encode: &StatexClient.encode/1,
                       decode: &StatexClient.decode/1,
                       gzip: false,
-                      client: :httpoison
+                      client: :httpoison,
+                      timeout: 60000
                     ]
     end
   end
