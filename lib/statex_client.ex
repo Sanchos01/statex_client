@@ -21,7 +21,6 @@ defmodule StatexClient do
   use Application
   use Silverb, [{"@memo_ttl", (res = :application.get_env(:statex_client, :memo_ttl, nil); true = (is_integer(res) and (res > 0)); res)}]
   use StatexClient.HTTP
-  use Hashex, [__MODULE__.Info]
   use Logex, [ttl: 100]
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
@@ -55,5 +54,6 @@ defmodule StatexClient do
 
   def statex_callback, do: %StatexClient.Info{ok: true}
   def send(mess = %StatexClient.Info{}), do: StatexClient.Worker.send_process(mess)
-
 end
+
+use Hashex, [StatexClient.Info]
