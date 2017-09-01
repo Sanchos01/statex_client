@@ -44,7 +44,7 @@ defmodule StatexClient.Mixfile do
       {:exactor, github: "sasa1977/exactor", tag: "0467f8100bc735405d597dbf94996195eb31e0b6", override: true},
       {:hashex, github: "timCF/hashex"},
       {:jazz, github: "meh/jazz"},
-      {:tinca, github: "timCF/tinca"},
+      {:tinca, github: "Sanchos01/tinca"},
       {:logex, github: "timCF/logex"},
       {:exutils, github: "timCF/exutils"}
     ]
