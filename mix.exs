@@ -45,7 +45,7 @@ defmodule StatexClient.Mixfile do
       {:hashex, github: "timCF/hashex"},
       {:jazz, github: "meh/jazz"},
       {:tinca, github: "Sanchos01/tinca"},
-      {:logex, github: "timCF/logex"},
+      {:logex, github: "Sanchos01/logex"},
       {:exutils, github: "timCF/exutils"}
     ]
   end
